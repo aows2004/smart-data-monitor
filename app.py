@@ -824,6 +824,8 @@ else:
 # ==================================================
 
 result = st.session_state.monitor_result
+if result is None:
+    st.stop()
 
 if result is not None:
 
