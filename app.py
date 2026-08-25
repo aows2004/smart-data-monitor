@@ -1,5 +1,7 @@
 from urllib.parse import urlparse
 
+import os
+
 import pandas as pd
 import streamlit as st
 
@@ -19,6 +21,18 @@ from storage.database import DatabaseManager
 # --------------------------------------------------
 
 DB_PATH = "data/smartdata.db"
+
+PUBLIC_DEMO = (
+    os.getenv("PUBLIC_DEMO", "false")
+    .lower()
+    == "true"
+)
+
+PUBLIC_DEMO_HOSTS = {
+    "books.toscrape.com",
+    "webscraper.io",
+    "www.webscraper.io"
+}
 
 
 # --------------------------------------------------
@@ -47,10 +61,21 @@ def is_valid_http_url(value):
     try:
         parsed = urlparse(value)
 
-        return (
-            parsed.scheme in {"http", "https"}
-            and bool(parsed.netloc)
-        )
+        if (
+            parsed.scheme not in {"http", "https"}
+            or not parsed.netloc
+        ):
+            return False
+
+        if PUBLIC_DEMO:
+            hostname = (
+                parsed.hostname or ""
+            ).lower()
+
+            if hostname not in PUBLIC_DEMO_HOSTS:
+                return False
+
+        return True
 
     except ValueError:
         return False
