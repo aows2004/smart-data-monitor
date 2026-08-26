@@ -1,8 +1,18 @@
 # 📊 SmartData Monitor
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Open_App-success)](https://smart-data-monitor.onrender.com/)
+
 SmartData Monitor is a configurable Python web-monitoring application for tracking product listings across websites and detecting changes over time.
 
 It supports both traditional server-rendered websites and JavaScript-rendered pages, custom CSS selector configurations, multi-page crawling, persistent monitor profiles, historical snapshots, automatic change detection, and CSV/Excel exports.
+
+## Live Demo
+
+Try SmartData Monitor online:
+
+**https://smart-data-monitor.onrender.com/**
+
+> The public demo runs on a free cloud instance, so the first load after a period of inactivity may take a short time. Demo data and saved monitor history may also reset between deployments or service restarts.
 
 ---
 
